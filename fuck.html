@@ -23,7 +23,7 @@
     <main  id="transaction-area">
     <section>
         <h1 style="color:brown;" class="ms-3">Transaction Area</h1>
-        <div class="container text-white ms-0 mb-0 mt-5">
+        <div class="container text-white ms-0 mb-0 m-5">
             <div class="row d-flex justify-content-between">
               <div class="col-md-3 rounded deposit pt-3 p-4">
                 <h3>Deposit</h3>
@@ -41,20 +41,30 @@
           </div>
     </section>
     <section>
-      <div class="d-flex ">
+      <div class="d-flex">
         <div class="form col-md-6 me-3">
           <h2>Deposit</h2>
-          <input id="amount_input" type="text" placeholder="$ Amount you want to deposit" class="mb-4  mt-3 form-control">
+          <input id="amount_input" type="text" placeholder="$ Amount you want to deposit" class="form-control mb-4">
           <button id="btn-deposit" class="btn btn-success">Deposit</button>
         </div>
         <div class="form col-md-6 ms-3">
           <h2>Withdraw</h2>
-          <input id="input" type="text" placeholder="$ Amount you want to withdraw" class="form-control mb-4  mt-3">
+          <input id="input" type="text" placeholder="$ Amount you want to withdraw" class="form-control mb-4">
           <button id="btn_withdraw"class="btn btn-success">Withdraw</button>
         </div>
       </div>
     </section>
-  </main>
+    </main>
+
+
+
+
+
+
+
+
+
+
 
     <script>
       // login button event handler
@@ -69,16 +79,6 @@
          transaction_area.style.display="block";
 
         })
-           //  function of balance and deposit
-           function span_text(id,amount){
-           var math = amount;
-           var current= document.getElementById(id).innerText;
-           var number = parseFloat(current);
-           var  sum = number + amount ;
-          //  important line
-           document.getElementById(id).innerText= sum;
-        }
-
           // deposit button event handler
         var button_1 = document.getElementById("btn-deposit");
       
@@ -94,23 +94,32 @@
         
         document.getElementById('amount_input').value="";
 
-        })
-        function float(id){
-            var input = document.getElementById(id).value;
-            var input_number= parseFloat(input);
-            return input_number;
+      //  function of balance and deposit
+        function span_text(id,amount){
+           var current= document.getElementById(id).innerText;
+           var number = parseFloat(current);
+           var sum = number + amount ;
+          //  important line
+           document.getElementById(id).innerText= sum;
         }
+        })
 
         // second button
         var button = document.getElementById("btn_withdraw");
-        button.addEventListener('click',function(){
-         var input = document.getElementById("input").value;
-         var input_number= parseFloat(input);
-         span_text("currentwithdraw",input_number);
-         document.getElementById('input').value="";
-         span_text("currentBal",-1*input_number);
+        button.addEventListener('click', function(){
+          
+        var input = document.getElementById("input").value;
+        var input_number= parseFloat(input);
+        
+        var withdraw = document.getElementById('currentwithdraw').innerText;
+        var withdraw_number = parseFloat(withdraw);
+
+        var total_withdraw = input_number + withdraw_number;
+        document.getElementById('currentwithdraw').innerText = total_withdraw;
+        document.getElementById('input').value="";
         })
-     
+        
+
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
